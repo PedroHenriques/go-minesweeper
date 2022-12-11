@@ -1,0 +1,8 @@
+# Options for analysis running.
+run:
+  # Include test files or not.
+  # Default: true
+  tests: false
+  # Allow multiple parallel golangci-lint instances running.
+  # If false (default) - golangci-lint acquires file lock on start.
+  allow-parallel-runners: true

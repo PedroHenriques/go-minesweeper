@@ -1,0 +1,24 @@
+FROM golang:1.19-buster
+
+WORKDIR /usr/src/app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y gcc libgl1-mesa-dev xorg-dev zip
+
+# Copy the repo into the container
+ADD . .
+
+# Install GO dependencies
+RUN go mod tidy
+
+# Install Fyne CLI
+RUN go install fyne.io/fyne/v2/cmd/fyne@latest
+
+# Install dependency needed for converting coverage output into lcov format
+RUN go install github.com/jandelgado/gcov2lcov@latest
+
+# Install dependency needed for running tests in watch mode
+RUN go install github.com/mitranim/gow@latest
+
+# Generate the Fyne bundle file with all the necessary assets 
+RUN sh ./cli/bundle.sh

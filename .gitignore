@@ -1,0 +1,7 @@
+go.work
+go.work.sum
+
+coverage/
+
+fyneBundle.go
+bin/

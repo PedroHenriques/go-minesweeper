@@ -1,0 +1,6 @@
+[Details]
+  Icon = "assets/images/favicon.png"
+  Name = "Go_Minesweeper"
+  ID = "com.github.go-minesweeper"
+  Version = "1.0.0"
+  Build = 1

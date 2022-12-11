@@ -1,0 +1,7 @@
+{
+  "SizeOptions": {
+    "Beginner (9x9 - 10 mines)": { "NumMines": 10, "NumRows":  9, "NumCols":  9 },
+    "Intermediate (16x16 - 40 mines)": { "NumMines": 40, "NumRows":  16, "NumCols":  16 },
+    "Expert (16x30 - 99 mines)": { "NumMines": 99, "NumRows":  16, "NumCols":  30 }
+  }
+}
