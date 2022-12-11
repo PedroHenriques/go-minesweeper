@@ -1,0 +1,29 @@
+name: ci
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+  push:
+    branches:
+      - 'main'
+jobs:
+  linter-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+
+      - name: Run linter
+        run: sh cli/lint.sh build
+      
+      - name: Run unit tests
+        run: sh cli/test.sh build
+
+      - name: Run unit test coverage
+        run: sh cli/coverage.sh
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./coverage/coverage.lcov"
+          flag-name: "unit"
