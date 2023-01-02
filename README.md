@@ -38,18 +38,13 @@ The binaries will be available on the directory `bin/`
 
 1. Make sure you have the latest version of golang installed
 
-2. Install Fyne, the graphic library used to render the GUI
-```sh
-go install fyne.io/fyne/v2/cmd/fyne@latest
-```
-
-3. Install Fyne's dependencies for your OS. Consult them [here](https://developer.fyne.io/started/#prerequisites)
+2. Install Fyne's dependencies for your OS. Consult them [here](https://developer.fyne.io/started/#prerequisites)
 
 ### Running the game
 
 On a terminal, from the root of the repo, run
 ```sh
-sh cli/run.sh
+go run ./main.go
 ```
 
 ## Development tools
