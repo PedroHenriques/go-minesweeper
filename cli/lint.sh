@@ -2,9 +2,15 @@
 set -e
 
 BUILD_DOCKER_IMG=0
-if [ "$1" = "build" ]; then
-  BUILD_DOCKER_IMG=1
-fi
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -b|--build) BUILD_DOCKER_IMG=1; shift 1;;
+
+    -*) echo "unknown option: $1" >&2; exit 1;;
+    *) shift 1;;
+  esac
+done
 
 if [ $BUILD_DOCKER_IMG -eq 1  ]; then
   echo "Build the Docker image";

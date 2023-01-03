@@ -4,23 +4,24 @@ set -e
 BUILD_DOCKER_IMG=0
 DIRS="";
 
-if [ "$1" != "" ]; then
-  if [ "$1" = "build" ]; then
-    BUILD_DOCKER_IMG=1
-  else
-    DIRS=$1;
-  fi
-fi
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -b|--build) BUILD_DOCKER_IMG=1; shift 1;;
 
-if [ $BUILD_DOCKER_IMG -eq 1  ]; then
-  echo "Build the Docker image";
-  docker build -f ./docker/Dockerfile-linux --pull --rm -t go-minesweeper-linux:latest .;
-fi
+    -*) echo "unknown option: $1" >&2; exit 1;;
+    *) DIRS="$DIRS $1"; shift 1;;
+  esac
+done
 
 if [ "$DIRS" = "" ]; then
   for dir in ./internal/*/ ; do
     DIRS="$DIRS $dir";
   done
+fi
+
+if [ $BUILD_DOCKER_IMG -eq 1  ]; then
+  echo "Build the Docker image";
+  docker build -f ./docker/Dockerfile-linux --pull --rm -t go-minesweeper-linux:latest .;
 fi
 
 mkdir -p ./coverage/;

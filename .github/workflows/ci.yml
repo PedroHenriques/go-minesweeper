@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run linter
-        run: sh cli/lint.sh build
+        run: sh cli/lint.sh -b
       
       - name: Run unit tests
-        run: sh cli/test.sh build
+        run: sh cli/test.sh -b
 
       - name: Run unit test coverage
         run: sh cli/coverage.sh

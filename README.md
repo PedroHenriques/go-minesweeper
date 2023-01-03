@@ -1,4 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/PedroHenriques/go-minesweeper/badge.svg?branch=main)](https://coveralls.io/github/PedroHenriques/go-minesweeper?branch=main)
+![ci workflow](https://github.com/PedroHenriques/go-minesweeper/actions/workflows/ci.yml/badge.svg?branch=main)
+![cd workflow](https://github.com/PedroHenriques/go-minesweeper/actions/workflows/cd.yml/badge.svg)
 
 # Go Minesweeper
 
@@ -25,9 +27,11 @@ You can download the binaries [here](http://pedrojhenriques.com/games/go-mineswe
 
 On a terminal, from the root of the repo, run
 ```sh
-sh cli/build.sh [build]
+sh cli/build.sh [OPTIONS]
 
-build: will build the docker image used to compile the code
+Options:
+-b, --build: will build the docker image used to compile the code
+--version: version of the build. Will be used to name the binary file.
 ```
 
 The binaries will be available on the directory `bin/`
@@ -49,33 +53,46 @@ go run ./main.go
 
 ## Development tools
 
+### Updating the asset bundle file
+
+On a terminal, from the root of the repo, run
+```sh
+sh cli/bundle.sh
+```
+
+The script will catch all files inside `assets/images/`
+
 ### Running the linters
 
 On a terminal, from the root of the repo, run
 ```sh
-sh cli/lint.sh [build]
+sh cli/lint.sh [OPTIONS]
 
-build: will build the docker image used to run the linters
+Options:
+-b, --build: will build the docker image used to run the linters
 ```
 
 ### Running the tests
 
 On a terminal, from the root of the repo, run
 ```sh
-sh cli/test.sh [build] [-w] [dir1 dir2 ...]
+sh cli/test.sh [OPTIONS] [dir1 dir2 ...]
 
-build: will build the docker image used to run the tests
--w: run the tests in watch mode
-dir1 dir2 ...: the directories to look for test files. Default is internal/
+Options:
+-b, --build: will build the docker image used to run the tests
+-w, --watch: run the tests in watch mode
+
+dir1 dir2 ...: the directories to look for test files. Defaults to all subdirectories of internal/
 ```
 
 ### Running the test coverage
 
 On a terminal, from the root of the repo, run
 ```sh
-sh cli/coverage.sh [build]
+sh cli/coverage.sh [OPTIONS]
 
-build: will build the docker image used to run the tests
+Options:
+-b, --build: will build the docker image used to run the tests
 ```
 
 The output will be available on the directory `coverage/`
