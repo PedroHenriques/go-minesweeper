@@ -11,4 +11,4 @@ if [ $BUILD_DOCKER_IMG -eq 1  ]; then
   docker build -f ./docker/Dockerfile-linter --pull --rm -t go-minesweeper-linter:latest .;
 fi
 
-docker run --rm -v "${PWD}/":"/usr/src/app/" go-minesweeper-linter:latest /bin/sh -c "go mod tidy && sh ./cli/bundle.sh && golangci-lint run -v";
+docker run --rm -v "${PWD}/":"/usr/src/app/" go-minesweeper-linter:latest /bin/sh -c "go mod tidy && golangci-lint run -v";
